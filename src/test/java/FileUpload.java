@@ -28,9 +28,9 @@ public class FileUpload extends DeviantArtPageBase {
         System.out.println(this.driver.getCurrentUrl());
         driver.switchTo().frame("deviation-0");
         String inputSpan = "Choose a file to upload";
-        WebElement inputSpanElement = driver.findElement(By.xpath("//*[@id='stash-form']/a/span"));
-        System.out.println("Frame identified. Input Element has been found inside the frame with the xpath: " + inputSpanElement.getText());
-        Assert.assertEquals(inputSpanElement.getText(),inputSpan);
+        WebElement inputSpanElem = driver.findElement(By.xpath("//*[@id='stash-form']/a/span"));
+        System.out.println("Frame identified. Input Element has been found inside the frame with the xpath: " + inputSpanElem.getText());
+        Assert.assertEquals(inputSpanElem.getText(),inputSpan);
         WebElement fileInputElement = driver.findElement(fileInput);
         fileInputElement.sendKeys(getFilePath(filePath));
         this.waitAndReturnElement(submitDeviationBtn).click();
