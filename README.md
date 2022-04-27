@@ -30,10 +30,8 @@ Github Repo
 	Home Page text (Reading the page title)
 	Check if the navigation bar is displayed on the page
 	Fill the search input and submit it (Fill input & Send a form )
-	Click the user icon and read the content of the dropdown "ul li" (Reading dropdown + Hover test )
 
 - User Page :
-
 	Assert the existence of the user name (complex xpath)
 
 - ArtMasterPiece Page :
@@ -43,11 +41,11 @@ Github Repo
 
 
 - DeviantArtThemes :
-
+	Click the user icon and read the content of the dropdown "ul li" (Reading dropdown + Hover test )
 	Check the title of the theme list "Theme"
 	Get the three theme
 	Click on one of theme one after another and 
-	get the css value background and check the color
+	get the css values background and assert the colors
 
 - Notification Page
 	
@@ -61,5 +59,4 @@ Github Repo
 	
 	File Upload + Drag and Drop
 
-	
 - Logout

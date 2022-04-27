@@ -16,7 +16,7 @@ import java.util.*;
 public class LoginPage extends DeviantArtPageBase {
     private By usernameInput = By.id("username");
     private By passwordInput = By.id("password"); 
-    private By loginCTA = By.xpath("//*[@id='loginbutton']");
+    private By loginCTA = By.xpath("//*[@id='loginbutton']"); 
 
     public LoginPage(WebDriver driver){
         super(driver);
@@ -25,7 +25,6 @@ public class LoginPage extends DeviantArtPageBase {
     public HomePage login(String username, String password){
         this.waitAndReturnElement(usernameInput).sendKeys(username);
         this.waitAndReturnElement(passwordInput).sendKeys(password+"\n");
-
         return new HomePage(this.driver);
     }
 

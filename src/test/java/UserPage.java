@@ -16,8 +16,14 @@ import java.util.*;
 
 public class UserPage extends DeviantArtPageBase {
 
+    private By username = By.xpath("//*[@id='content-container']/div[2]/div[1]/div/div[2]/h1/a/span[1]");
+
     public UserPage(WebDriver driver){
         super(driver);
+    }
+
+    public String getAuthentifiedUser(){
+        return this.waitAndReturnElement(this.username).getText();
     }
 
 }

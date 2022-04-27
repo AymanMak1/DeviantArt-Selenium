@@ -17,16 +17,18 @@ import java.util.*;
 public class HomePage extends DeviantArtPageBase {
 
     Actions action = new Actions(driver);
-    private By LandingPageMenuItem = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[2]/div/div/a[1]/span");
-    private By userIcon = By.xpath("//*[@id='root']/header/div[1]/div[4]");
+    private By homePageMenuItem = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[2]/div/div/a[1]/span");
+    private By userProfileCTA = By.xpath("//*[@id='root']/header/div[1]/div[4]/a");
     private By searchInput = By.xpath("//*[@id='search-input']");
+    private By logoutCTA = By.xpath("//*[@id='site-header-user-menu-group-4-option-1']/span"); 
+    private By submitDeviationCTA = By.xpath("//*[@id='site-header-submit-button']");
 
     public HomePage(WebDriver driver){
         super(driver);
     }
 
-    public String getLandingPageMenuItem(){
-        return this.waitAndReturnElement(this.LandingPageMenuItem).getText();
+    public String getHomePageMenuItem(){
+        return this.waitAndReturnElement(this.homePageMenuItem).getText();
     }
 
     public void search(String searchText){
@@ -35,8 +37,20 @@ public class HomePage extends DeviantArtPageBase {
         search.sendKeys(searchText+"\n");
     }
 
-    public void goToUserPage(){
-        WebElement userDropDownMenu = this.waitAndReturnElement(this.userIcon);
-        action.moveToElement(userDropDownMenu).build().perform();
+    public UserPage goToUserPage(){
+        WebElement userDropDownMenu = this.waitAndReturnElement(this.userProfileCTA);
+        userDropDownMenu.click();
+        return new UserPage(this.driver);
+        //action.moveToElement(userDropDownMenu).build().perform();
+    }
+
+    public FileUpload goToDeviationSubmissionPage(){
+        this.waitAndReturnElement(this.submitDeviationCTA).click();
+        return new FileUpload(this.driver);
+    }
+
+    public LandingPage logout(){
+        this.waitAndReturnElement(this.logoutCTA).click();
+        return new LandingPage(this.driver);
     }
 }

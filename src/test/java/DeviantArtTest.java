@@ -27,7 +27,7 @@ public class DeviantArtTest {
     }
 
     @Test
-    public void testLandingAndLogin(){
+    public void DeviantArtSeleniumTest(){
         LandingPage landingPage = new LandingPage(this.driver);
         System.out.println(landingPage.getBodyText());
         System.out.println("\n" + landingPage.getLandingPageTitle());
@@ -35,11 +35,26 @@ public class DeviantArtTest {
 
         LoginPage loginPage = landingPage.goToLoginPage();
         HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
-        System.out.println(homePage.getLandingPageMenuItem());
-        Assert.assertTrue(homePage.getLandingPageMenuItem().contains("Deviations"));
+        System.out.println(homePage.getHomePageMenuItem());
+        Assert.assertTrue(homePage.getHomePageMenuItem().contains("Deviations"));
 
-        homePage.search("Naruto");
-        //homePage.goToUserPage();
+        homePage.search("Demon Slayer");
+
+        /*
+        homePage.goToUserPage();
+        UserPage userPage = new UserPage(this.driver);
+        System.out.println("The Current Driver URL : " +
+                            this.driver.getCurrentUrl() + "| The Authentified user : " + 
+                            userPage.getAuthentifiedUser());
+        
+        Assert.assertTrue(this.driver.getCurrentUrl().contains(userPage.getAuthentifiedUser()));
+        */
+
+        FileUpload deviationFile = homePage.goToDeviationSubmissionPage();
+        String deviationFilePath = "imgs\\deviationFileUploadImage.jpg";
+        deviationFile.submitADeviation(deviationFilePath);
+               
+        //homePage.logout();
     }
     
     @After
