@@ -18,7 +18,7 @@ public class HomePage extends DeviantArtPageBase {
 
     Actions action = new Actions(driver);
     private By homePageMenuItem = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[2]/div/div/a[1]/span");
-    private By userProfileCTA = By.xpath("//*[@id='root']/header/div[1]/div[4]/a");
+    private By userProfileCTA = By.xpath("/html/body/div[1]/header/div[1]/div[4]/a");
     private By searchInput = By.xpath("//*[@id='search-input']");
     private By logoutCTA = By.xpath("//*[@id='site-header-user-menu-group-4-option-1']/span"); 
     private By submitDeviationCTA = By.xpath("//*[@id='site-header-submit-button']");
