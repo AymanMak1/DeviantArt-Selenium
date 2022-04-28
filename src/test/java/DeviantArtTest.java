@@ -41,7 +41,6 @@ public class DeviantArtTest {
         homePage.search("Demon Slayer");
 
         /*
-        homePage.goToUserPage();
         UserPage userPage = new UserPage(this.driver);
         System.out.println("The Current Driver URL : " +
                             this.driver.getCurrentUrl() + "| The Authentified user : " + 
@@ -53,7 +52,8 @@ public class DeviantArtTest {
         FileUpload deviationFile = homePage.goToDeviationSubmissionPage();
         String deviationFilePath = "imgs\\deviationFileUploadImage.jpg";
         deviationFile.submitADeviation(deviationFilePath);
-               
+        //homePage.goToUserPage();
+
         //homePage.logout();
     }
     
