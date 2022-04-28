@@ -57,6 +57,6 @@ Github Repo
 
 - SubmitADeviation
 	
-	File Upload + Drag and Drop
+	File Upload (Deviation Submission and check if the image exists) + Drag and Drop
 
 - Logout

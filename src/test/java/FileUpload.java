@@ -24,7 +24,7 @@ public class FileUpload extends DeviantArtPageBase {
         super(driver);
     }
 
-    public void submitADeviation(String filePath){
+    public UserPage submitADeviation(String filePath){
         System.out.println(this.driver.getCurrentUrl());
         driver.switchTo().frame("deviation-0");
         String inputSpan = "Choose a file to upload";
@@ -34,6 +34,7 @@ public class FileUpload extends DeviantArtPageBase {
         WebElement fileInputElement = driver.findElement(fileInput);
         fileInputElement.sendKeys(getFilePath(filePath));
         this.waitAndReturnElement(submitDeviationBtn).click();
+        return new HomePage(this.driver).goToUserPage();
     }
 
     public String getFilePath(String filePath){
