@@ -20,6 +20,7 @@ public class LandingPage extends DeviantArtPageBase {
     private By loginBtn = By.xpath("//*[@id='root']/header/div[1]/div[2]/a[2]");
     final private String rootUrl = "https://www.deviantart.com";
     private By LandingPageMenuItem = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[2]/div/div/a[1]/span");
+    private By searchInput = By.xpath("//*[@id='search-input']");
 
     public LandingPage(WebDriver driver){
         super(driver);
@@ -37,6 +38,12 @@ public class LandingPage extends DeviantArtPageBase {
 
     public String getLandingPageMenuItem(){
         return this.waitAndReturnElement(LandingPageMenuItem).getText();
+    }
+
+    public void search(String searchText){
+        WebElement search = this.waitAndReturnElement(this.searchInput);
+        search.click();
+        search.sendKeys(searchText+"\n");
     }
 
 }

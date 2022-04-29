@@ -14,8 +14,8 @@ import org.openqa.selenium.NoSuchElementException;
 import java.util.*;
 
 public class LoginPage extends DeviantArtPageBase {
-    private By usernameInput = By.id("username");
-    private By passwordInput = By.id("password"); 
+    public static By usernameInput = By.id("username");
+    public static By passwordInput = By.id("password"); 
     private By loginCTA = By.xpath("//*[@id='loginbutton']"); 
 
     public LoginPage(WebDriver driver){

@@ -4,6 +4,7 @@ import org.junit.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,13 +20,13 @@ public class FileUpload extends DeviantArtPageBase {
 
     private By fileInput = By.xpath("//*[@id='stash-form']/a/input");
     private By submitDeviationBtn = By.xpath("//*[@id='ile-contents']/span/button");
-
+    private By deviationTitle = By.xpath("//*[@id='devtitle']");
+    private By deviationDescription = By.cssSelector(".writer.selectable.no-lub.put-art-here.ui-droppable");
     public FileUpload(WebDriver driver){
         super(driver);
     }
 
-    public UserPage submitADeviation(String filePath){
-        System.out.println(this.driver.getCurrentUrl());
+    public void submitADeviation(String filePath){
         driver.switchTo().frame("deviation-0");
         String inputSpan = "Choose a file to upload";
         WebElement inputSpanElem = driver.findElement(By.xpath("//*[@id='stash-form']/a/span"));
@@ -33,8 +34,25 @@ public class FileUpload extends DeviantArtPageBase {
         Assert.assertEquals(inputSpanElem.getText(),inputSpan);
         WebElement fileInputElement = driver.findElement(fileInput);
         fileInputElement.sendKeys(getFilePath(filePath));
-        this.waitAndReturnElement(submitDeviationBtn).click();
-        return new HomePage(this.driver).goToUserPage();
+        WebElement deviationTitleElem = this.waitAndReturnElement(deviationTitle);
+        deviationTitleElem.clear();
+        deviationTitleElem.sendKeys("MySeleniumDeviation");
+        try{
+            WebElement deviationDescElem = this.waitAndReturnElement(deviationDescription);
+            deviationDescElem.click();
+            String script = "arguments[0].innerHTML='This my first deviation upload using Selenium.'";
+            ((JavascriptExecutor) driver).executeScript(script, deviationDescElem);
+            Thread.sleep(3000);
+            this.waitAndReturnElement(submitDeviationBtn).click();
+        }
+        catch(InterruptedException ie){
+        }
+
+    }
+
+    public String getDeviationTitle(){
+        String expectedDeviationTitle = "MySeleniumDeviation";
+        return expectedDeviationTitle;
     }
 
     public String getFilePath(String filePath){

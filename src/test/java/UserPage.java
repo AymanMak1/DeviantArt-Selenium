@@ -16,14 +16,17 @@ import java.util.*;
 
 public class UserPage extends DeviantArtPageBase {
 
-    private By username = By.xpath("//*[@id='content-container']/div[2]/div[1]/div/div[2]/h1/a/span[1]");
+    private By username = By.xpath("//*[@id='root']/main/div/div[3]/div/div[1]/div/div[2]/div[2]/div/div/a/span[1] ");
 
     public UserPage(WebDriver driver){
         super(driver);
     }
 
     public String getAuthentifiedUser(){
-        return this.waitAndReturnElement(this.username).getText();
+        String url = this.driver.getCurrentUrl();
+        String segments[] = url.split("/");
+        String AuthentifiedUser = segments[segments.length - 1];
+        return AuthentifiedUser;
     }
 
 }

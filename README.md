@@ -47,16 +47,16 @@ Github Repo
 	Click on one of theme one after another and 
 	get the css values background and assert the colors
 
-- Notification Page
-	
-	No Notification
-
-- Chat Page
-
-	No Chat
 
 - SubmitADeviation
 	
-	File Upload (Deviation Submission and check if the image exists) + Drag and Drop
+	File Upload (Deviation Submission and check if the image exists)
 
-- Logout
+
+- Logout (Needs fixing)
+
+## Left To Do
+- Drag and Drop
+- Using configuration file : The tests read a configuration file that contains eg. user data, test datas. etc.
+- WebDriver configuration
+- Test case dependencies
