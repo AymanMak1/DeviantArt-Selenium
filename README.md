@@ -4,41 +4,6 @@ Steps : https://docs.google.com/spreadsheets/d/1lwZlTShULZVSCxM-ew880VkdSffrruTU
 
 To Fill-in SpreadSheet : https://docs.google.com/spreadsheets/d/1lwZlTShULZVSCxM-ew880VkdSffrruTUF229c-FsC5k/edit#gid=0
 
-Github Repo 
-
-4 Classes :
-
-	PageBase 
-	Login Page
-	Home Page
-	Uer page
-	ArtMasterPiece Page
-	Notification Page
-	Chat Page
-	DeviantArtThemes
-	SubmitADeviation
-
-
-- Login Page :
-
-	(Fill simple form and send Login):
-		cegewij147@idurse.com
-		Seleniumart22@
-
-- Home Page :
-
-	Home Page text (Reading the page title)
-	Check if the navigation bar is displayed on the page
-	Fill the search input and submit it (Fill input & Send a form )
-
-- User Page :
-	Assert the existence of the user name (complex xpath)
-
-- ArtMasterPiece Page :
-
-	Check an art and make a comment on it (Fill input)
-	Submit a comment
-
 
 - DeviantArtThemes :
 	Click the user icon and read the content of the dropdown "ul li" (Reading dropdown + Hover test )
@@ -47,16 +12,10 @@ Github Repo
 	Click on one of theme one after another and 
 	get the css values background and assert the colors
 
-
-- SubmitADeviation
-	
-	File Upload (Deviation Submission and check if the image exists)
-
-
-- Logout (Needs fixing)
-
 ## Left To Do
 - Drag and Drop
 - Using configuration file : The tests read a configuration file that contains eg. user data, test datas. etc.
 - WebDriver configuration
 - Test case dependencies
+- Filling text area (Submit a comment)
+- Read a dropdown
