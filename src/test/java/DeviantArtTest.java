@@ -141,7 +141,7 @@ public class DeviantArtTest {
         StaticPage staticPage = new StaticPage(this.driver);
         String[] staticPages = {"https://www.deviantart.com/topic"};
         staticPage.loadedCorrectlyOrNot(staticPages);
-        staticPage.historyBack()
+        staticPage.historyBack();
     }
 
     @After
