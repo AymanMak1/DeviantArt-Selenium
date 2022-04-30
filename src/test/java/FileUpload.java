@@ -40,7 +40,7 @@ class FileUpload extends DeviantArtPageBase {
         try{
             WebElement deviationDescElem = this.waitAndReturnElement(deviationDescription);
             deviationDescElem.click();
-            String script = "arguments[0].innerHTML='This my first deviation upload using Selenium.'";
+            String script = "arguments[0].innerHTML='This my deviation upload using Selenium.'";
             ((JavascriptExecutor) driver).executeScript(script, deviationDescElem);
             Thread.sleep(3000);
             this.waitAndReturnElement(submitDeviationBtn).click();

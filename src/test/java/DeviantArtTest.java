@@ -13,6 +13,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Properties;
 
 
 public class DeviantArtTest {
@@ -45,19 +49,21 @@ public class DeviantArtTest {
         // Search Demon Slayer Anime
         landingPage.search("Demon Slayer");
     }
-
+    */
     @Test
     public void testLogin(){
+        ConfigFile config = new ConfigFile();
+        Properties props = config.readUserCredentials();
         // Open the Landing page
         LandingPage landingPage = new LandingPage(this.driver);
         // Go to Login Page and submit the Login Form
         LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        HomePage homePage = loginPage.login(props.getProperty("username"),props.getProperty("password"));
         // Check if the user logged in by checking if the "Deviation" Menu Item is shown;
         System.out.println(homePage.getHomePageMenuItem());
         Assert.assertTrue(homePage.getHomePageMenuItem().contains("Deviations"));
     }
-
+    /*
     @Test
     public void testAuthentifiedUser(){
         // Open the Landing page
@@ -143,7 +149,7 @@ public class DeviantArtTest {
         staticPage.loadedCorrectlyOrNot(staticPages);
         staticPage.historyBack();
     }
-    */
+
     @Test
     public void testDragAndDrop(){
         LandingPage landingPage = new LandingPage(this.driver);
@@ -152,7 +158,7 @@ public class DeviantArtTest {
         UserPage userPage = homePage.goToUserPage();
         userPage.dragAndDrop();
     }
-
+    */
     @After
     public void close() {
         if (driver != null) {
