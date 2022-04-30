@@ -16,7 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 import java.io.*;
 
-public class FileUpload extends DeviantArtPageBase {
+class FileUpload extends DeviantArtPageBase {
 
     private By fileInput = By.xpath("//*[@id='stash-form']/a/input");
     private By submitDeviationBtn = By.xpath("//*[@id='ile-contents']/span/button");

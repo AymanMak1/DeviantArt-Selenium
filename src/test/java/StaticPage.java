@@ -15,7 +15,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 import java.io.*;
 
-public class StaticPage extends DeviantArtPageBase {
+class StaticPage extends DeviantArtPageBase {
 
     public StaticPage(WebDriver driver){
         super(driver);

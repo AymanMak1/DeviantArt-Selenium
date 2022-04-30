@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import java.util.*;
 
-public class LoginPage extends DeviantArtPageBase {
+class LoginPage extends DeviantArtPageBase {
     public static By usernameInput = By.id("username");
     public static By passwordInput = By.id("password"); 
     private By loginCTA = By.xpath("//*[@id='loginbutton']"); 

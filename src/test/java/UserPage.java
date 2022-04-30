@@ -14,7 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 
-public class UserPage extends DeviantArtPageBase {
+class UserPage extends DeviantArtPageBase {
 
     private By username = By.xpath("//*[@id='root']/main/div/div[3]/div/div[1]/div/div[2]/div[2]/div/div/a/span[1] ");
     private By galleryCta = By.xpath("//*[@id='content-container']/div[2]/div[2]/div/div/nav/div[2]/a[2]");

@@ -14,7 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 
-public class HomePage extends DeviantArtPageBase {
+class HomePage extends DeviantArtPageBase {
 
     Actions action = new Actions(driver);
     private By homePageMenuItem = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[2]/div/div/a[1]/span");
@@ -28,12 +28,12 @@ public class HomePage extends DeviantArtPageBase {
     }
 
     public String getHomePageMenuItem(){
-        return this.waitAndReturnElement(this.homePageMenuItem).getText();
+        return this.waitAndReturnElement(homePageMenuItem).getText();
     }
 
     public void hoverUserAccount() {
         Actions action = new Actions(driver);
-        WebElement userDropDownMenu = this.waitAndReturnElement(this.userProfileCTA);
+        WebElement userDropDownMenu = this.waitAndReturnElement(userProfileCTA);
         action.moveToElement(userDropDownMenu).perform();
         try{
             Thread.sleep(3000);
@@ -43,18 +43,18 @@ public class HomePage extends DeviantArtPageBase {
     }
 
     public UserPage goToUserPage(){
-        WebElement userDropDownMenu = this.waitAndReturnElement(this.userProfileCTA);
+        WebElement userDropDownMenu = this.waitAndReturnElement(userProfileCTA);
         userDropDownMenu.click();
         return new UserPage(this.driver);
     }
 
     public FileUpload goToDeviationSubmissionPage(){
-        this.waitAndReturnElement(this.submitDeviationCTA).click();
+        this.waitAndReturnElement(submitDeviationCTA).click();
         return new FileUpload(this.driver);
     }
 
     public LandingPage logout(){
-        this.waitAndReturnElement(this.logoutCTA).click();
+        this.waitAndReturnElement(logoutCTA).click();
         return new LandingPage(this.driver);
     }
 }

@@ -14,7 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 
-public class LandingPage extends DeviantArtPageBase {
+class LandingPage extends DeviantArtPageBase {
 
     private By LandingPageTitle = By.xpath("//*[@id='root']/div[1]/div/main/div[1]/header/div[1]/h1");
     private By loginBtn = By.xpath("//*[@id='root']/header/div[1]/div[2]/a[2]");

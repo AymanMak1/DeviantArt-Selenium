@@ -14,7 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import java.util.*;
 
-public class DeviationPage extends DeviantArtPageBase {
+class DeviationPage extends DeviantArtPageBase {
 
     private By deviationTitle = By.xpath("//*[@id='root']/main/div/div[3]/div/div[1]/div/div[2]/div[1]/h1");
 

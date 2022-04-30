@@ -26,7 +26,7 @@ public class DeviantArtTest {
         driver.manage().window().maximize();
 
     }
-
+    /*
     @Test
     public void testLandingPage(){
         // Open the Landing page
@@ -142,6 +142,15 @@ public class DeviantArtTest {
         String[] staticPages = {"https://www.deviantart.com/topic"};
         staticPage.loadedCorrectlyOrNot(staticPages);
         staticPage.historyBack();
+    }
+    */
+    @Test
+    public void testDragAndDrop(){
+        LandingPage landingPage = new LandingPage(this.driver);
+        LoginPage loginPage = landingPage.goToLoginPage();
+        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        UserPage userPage = homePage.goToUserPage();
+        userPage.dragAndDrop();
     }
 
     @After

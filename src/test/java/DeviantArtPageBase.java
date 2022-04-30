@@ -18,9 +18,7 @@ import java.util.*;
 //import org.openqa.selenium.chrome.*;
 //import org.openqa.selenium.support.ui.*;
 
-
-
-public class DeviantArtPageBase {
+class DeviantArtPageBase {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
