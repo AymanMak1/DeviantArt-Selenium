@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
-
+import java.io.IOException;
 
 public class DeviantArtTest {
 
@@ -30,7 +30,7 @@ public class DeviantArtTest {
         driver.manage().window().maximize();
 
     }
-    /*
+
     @Test
     public void testLandingPage(){
         // Open the Landing page
@@ -49,21 +49,21 @@ public class DeviantArtTest {
         // Search Demon Slayer Anime
         landingPage.search("Demon Slayer");
     }
-    */
+  
     @Test
-    public void testLogin(){
-        ConfigFile config = new ConfigFile();
-        Properties props = config.readUserCredentials();
+    public void testLogin() throws IOException{
         // Open the Landing page
         LandingPage landingPage = new LandingPage(this.driver);
         // Go to Login Page and submit the Login Form
         LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login(props.getProperty("username"),props.getProperty("password"));
+        ConfigFileReader reader = new ConfigFileReader();
+        Properties props = reader.readConfigurationFile();
+        HomePage homePage = loginPage.login(props.getProperty("username"), props.getProperty("password"));
         // Check if the user logged in by checking if the "Deviation" Menu Item is shown;
         System.out.println(homePage.getHomePageMenuItem());
         Assert.assertTrue(homePage.getHomePageMenuItem().contains("Deviations"));
     }
-    /*
+
     @Test
     public void testAuthentifiedUser(){
         // Open the Landing page
@@ -158,7 +158,7 @@ public class DeviantArtTest {
         UserPage userPage = homePage.goToUserPage();
         userPage.dragAndDrop();
     }
-    */
+
     @After
     public void close() {
         if (driver != null) {
