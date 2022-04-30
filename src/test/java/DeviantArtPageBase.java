@@ -25,6 +25,7 @@ public class DeviantArtPageBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions builder;
+    protected By searchInput = By.xpath("//*[@id='search-input']");
 
     public DeviantArtPageBase(WebDriver driver) {
         this.driver = driver;
@@ -39,11 +40,18 @@ public class DeviantArtPageBase {
     public void historyBack(){
         JavascriptExecutor js = (JavascriptExecutor) driver; 
         js.executeScript("window.history.go(-1)");
+        System.out.println("History Back | The Current URL is :" + this.driver.getCurrentUrl());
     }
     
     public String getBodyText() {
         WebElement bodyElement = this.waitAndReturnElement(By.tagName("body"));
         return bodyElement.getText();
+    }
+
+    public void search(String searchText){
+        WebElement search = this.waitAndReturnElement(this.searchInput);
+        search.click();
+        search.sendKeys(searchText+"\n");
     }
 
 }
