@@ -34,10 +34,4 @@ class DeviationPage extends DeviantArtPageBase {
         return this.waitAndReturnElement(deviationOwner).getText();
     }
 
-    /*public submitComment(){
-        return this.waitAndReturnElement(deviationExample).click();
-    }*/
-
-
-
 }
