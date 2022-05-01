@@ -25,13 +25,18 @@ class LoginPage extends DeviantArtPageBase {
         super(driver);
     }
 
-    public HomePage login(String usernameProp, String passwordProp) throws IOException{
+    public HomePage login(String usernameProp, String passwordProp) {
         // Open the Landing page
         landingPage = new LandingPage(this.driver);
         // Go to Login Page and submit the Login Form
         loginPage = landingPage.goToLoginPage();
-        reader = new ConfigFileReader();
-        props = reader.readConfigurationFile();
+        try{    
+            reader = new ConfigFileReader();
+            props = reader.readConfigurationFile();
+        } catch(IOException e){
+            e.getMessage();
+        }
+
         this.waitAndReturnElement(usernameInput).sendKeys(props.getProperty(usernameProp));
         this.waitAndReturnElement(passwordInput).sendKeys(props.getProperty(passwordProp)+"\n");
         return new HomePage(this.driver);
