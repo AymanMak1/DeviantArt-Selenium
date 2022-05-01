@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.*;
 
-
 public class DeviantArtTest {
 
     public WebDriver driver;
@@ -37,6 +36,8 @@ public class DeviantArtTest {
     public void testSearch(){
         LandingPage landingPage = new LandingPage(this.driver);
         landingPage.search("Demon Slayer");
+        Assert.assertTrue(landingPage.getBodyText().contains("Deviations"));
+        Assert.assertTrue(landingPage.getBodyText().contains("Demon Slayer"));
     }
   
     @Test
