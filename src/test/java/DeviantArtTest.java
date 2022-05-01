@@ -33,62 +33,43 @@ public class DeviantArtTest {
 
     @Test
     public void testLandingPage(){
-        // Open the Landing page
         LandingPage landingPage = new LandingPage(this.driver);
-        //get the body Text of the landing page
         System.out.println(landingPage.getBodyText());
-        // Get the Landing Page Title which supposed to be "Home"
         System.out.println("\n" + landingPage.getLandingPageTitle());
         Assert.assertTrue(landingPage.getLandingPageTitle().contains("Home"));
     }
 
     @Test
     public void testSearch(){
-        // Open the Landing page
         LandingPage landingPage = new LandingPage(this.driver);
-        // Search Demon Slayer Anime
         landingPage.search("Demon Slayer");
     }
   
     @Test
     public void testLogin() throws IOException{
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        // Go to Login Page and submit the Login Form
-        LoginPage loginPage = landingPage.goToLoginPage();
-        ConfigFileReader reader = new ConfigFileReader();
-        Properties props = reader.readConfigurationFile();
-        HomePage homePage = loginPage.login(props.getProperty("username"), props.getProperty("password"));
-        // Check if the user logged in by checking if the "Deviation" Menu Item is shown;
-        System.out.println(homePage.getHomePageMenuItem());
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
+        System.out.println("Check if the user logged in by checking if the \"Deviation\" Menu Item is shown :" + 
+                            homePage.getHomePageMenuItem());
         Assert.assertTrue(homePage.getHomePageMenuItem().contains("Deviations"));
     }
 
     @Test
     public void testAuthentifiedUser(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        // Go to Login Page and submit the Login Form
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         // Go to the User page and check the authentified user by checking the username in the url
         UserPage userPage = homePage.goToUserPage();
         System.out.println("The Current Driver URL : " +
                             this.driver.getCurrentUrl() + " | The Authentified user : " + 
                             userPage.getAuthentifiedUser());
-        
         Assert.assertTrue(this.driver.getCurrentUrl().contains(userPage.getAuthentifiedUser()));
     }
   
-    
-  
     @Test
     public void testDeviationFileUpload(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        // Go to Login Page and submit the Login Form
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
 
         // Go to the deviaition submission page and upload the file
         FileUpload deviationFile = homePage.goToDeviationSubmissionPage();
@@ -98,19 +79,14 @@ public class DeviantArtTest {
         DeviationPage deviationPage = new DeviationPage(this.driver);
         System.out.println("Expected: " + deviationPage.getDeviationTitle() + " | Actual: " + deviationFile.getDeviationTitle());
         Assert.assertEquals(deviationPage.getDeviationTitle(), deviationFile.getDeviationTitle());
-        //Assert.assertEquals(deviationPage.getDeviationOwner().toLowerCase(), userPage.getAuthentifiedUser());
         System.out.println("The owner and the title of the deviation are correct. The file has been successfuly uploaded!");
     }
 
     @Test
     public void testStaticPage(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        // Go to Login Page and submit the Login Form
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         StaticPage staticPage = new StaticPage(this.driver);
-        // homePage.goToStaticPage();
         String[] staticPages = {"https://www.deviantart.com/topic", 
                                 "https://www.deviantart.com/daily-deviations",
                                 "https://www.deviantart.com/popular/deviations"};
@@ -119,20 +95,16 @@ public class DeviantArtTest {
    
     @Test
     public void testHover(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         homePage.hoverUserAccount();
     }
    
     
     @Test
     public void testlogout(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         homePage.hoverUserAccount();
         homePage.logout();
     }
@@ -140,10 +112,9 @@ public class DeviantArtTest {
 
     @Test
     public void testHistoryBack(){
-        // Open the Landing page
-        LandingPage landingPage = new LandingPage(this.driver);
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        // navigate to a static page and go back to the home page
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         StaticPage staticPage = new StaticPage(this.driver);
         String[] staticPages = {"https://www.deviantart.com/topic"};
         staticPage.loadedCorrectlyOrNot(staticPages);
@@ -152,9 +123,8 @@ public class DeviantArtTest {
 
     @Test
     public void testDragAndDrop(){
-        LandingPage landingPage = new LandingPage(this.driver);
-        LoginPage loginPage = landingPage.goToLoginPage();
-        HomePage homePage = loginPage.login("Seleniumart1","Seleniumart1test");
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
         UserPage userPage = homePage.goToUserPage();
         userPage.dragAndDrop();
     }

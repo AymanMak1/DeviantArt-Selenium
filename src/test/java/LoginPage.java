@@ -12,19 +12,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import java.util.*;
+import java.io.IOException;
 
 class LoginPage extends DeviantArtPageBase {
-    public static By usernameInput = By.id("username");
-    public static By passwordInput = By.id("password"); 
-    private By loginCTA = By.xpath("//*[@id='loginbutton']"); 
-
+    private By usernameInput = By.id("username");
+    private By passwordInput = By.id("password"); 
+    private LandingPage landingPage;
+    private LoginPage loginPage;
+    private ConfigFileReader reader;
+    private Properties props;
     public LoginPage(WebDriver driver){
         super(driver);
     }
 
-    public HomePage login(String username, String password){
-        this.waitAndReturnElement(usernameInput).sendKeys(username);
-        this.waitAndReturnElement(passwordInput).sendKeys(password+"\n");
+    public HomePage login(String usernameProp, String passwordProp) throws IOException{
+        // Open the Landing page
+        landingPage = new LandingPage(this.driver);
+        // Go to Login Page and submit the Login Form
+        loginPage = landingPage.goToLoginPage();
+        reader = new ConfigFileReader();
+        props = reader.readConfigurationFile();
+        this.waitAndReturnElement(usernameInput).sendKeys(props.getProperty(usernameProp));
+        this.waitAndReturnElement(passwordInput).sendKeys(props.getProperty(passwordProp)+"\n");
         return new HomePage(this.driver);
     }
 
