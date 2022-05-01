@@ -1,6 +1,7 @@
+import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import org.junit.*;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,15 +10,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.interactions.Actions;
 import java.util.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Properties;
-import java.io.IOException;
+
 
 public class DeviantArtTest {
 
@@ -46,10 +40,10 @@ public class DeviantArtTest {
     }
   
     @Test
-    public void testLogin() throws IOException{
+    public void testLogin(){
         LoginPage loginPage = new LoginPage(this.driver);
         HomePage homePage = loginPage.login("username", "password");
-        System.out.println("Check if the user logged in by checking if the \"Deviation\" Menu Item is shown :" + 
+        System.out.println("Check if the user logged in by checking if the \"Deviations\" Menu Item is shown : " + 
                             homePage.getHomePageMenuItem());
         Assert.assertTrue(homePage.getHomePageMenuItem().contains("Deviations"));
     }
@@ -64,6 +58,35 @@ public class DeviantArtTest {
                             this.driver.getCurrentUrl() + " | The Authentified user : " + 
                             userPage.getAuthentifiedUser());
         Assert.assertTrue(this.driver.getCurrentUrl().contains(userPage.getAuthentifiedUser()));
+    }
+
+    @Test
+    public void testHover(){
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
+        homePage.hoverUserAccount();
+    }
+
+    @Test
+    public void testStaticPage(){
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
+        StaticPage staticPage = new StaticPage(this.driver);
+        String[] staticPages = {"https://www.deviantart.com/topic", 
+                                "https://www.deviantart.com/daily-deviations",
+                                "https://www.deviantart.com/popular/deviations"};
+        staticPage.loadedCorrectlyOrNot(staticPages);
+    }
+
+    @Test
+    public void testHistoryBack(){
+        // navigate to a static page and go back to the home page
+        LoginPage loginPage = new LoginPage(this.driver);
+        HomePage homePage = loginPage.login("username", "password");
+        StaticPage staticPage = new StaticPage(this.driver);
+        String[] staticPages = {"https://www.deviantart.com/topic"};
+        staticPage.loadedCorrectlyOrNot(staticPages);
+        staticPage.historyBack();
     }
   
     @Test
@@ -83,50 +106,19 @@ public class DeviantArtTest {
     }
 
     @Test
-    public void testStaticPage(){
+    public void testDragAndDrop(){
         LoginPage loginPage = new LoginPage(this.driver);
         HomePage homePage = loginPage.login("username", "password");
-        StaticPage staticPage = new StaticPage(this.driver);
-        String[] staticPages = {"https://www.deviantart.com/topic", 
-                                "https://www.deviantart.com/daily-deviations",
-                                "https://www.deviantart.com/popular/deviations"};
-        staticPage.loadedCorrectlyOrNot(staticPages);
+        UserPage userPage = homePage.goToUserPage();
+        userPage.dragAndDrop();
     }
-   
-    @Test
-    public void testHover(){
-        LoginPage loginPage = new LoginPage(this.driver);
-        HomePage homePage = loginPage.login("username", "password");
-        homePage.hoverUserAccount();
-    }
-   
-    
+
     @Test
     public void testlogout(){
         LoginPage loginPage = new LoginPage(this.driver);
         HomePage homePage = loginPage.login("username", "password");
         homePage.hoverUserAccount();
         homePage.logout();
-    }
-
-
-    @Test
-    public void testHistoryBack(){
-        // navigate to a static page and go back to the home page
-        LoginPage loginPage = new LoginPage(this.driver);
-        HomePage homePage = loginPage.login("username", "password");
-        StaticPage staticPage = new StaticPage(this.driver);
-        String[] staticPages = {"https://www.deviantart.com/topic"};
-        staticPage.loadedCorrectlyOrNot(staticPages);
-        staticPage.historyBack();
-    }
-
-    @Test
-    public void testDragAndDrop(){
-        LoginPage loginPage = new LoginPage(this.driver);
-        HomePage homePage = loginPage.login("username", "password");
-        UserPage userPage = homePage.goToUserPage();
-        userPage.dragAndDrop();
     }
 
     @After
